@@ -3,8 +3,16 @@ import { Link ,Redirect} from 'react-router-dom'
 import { connect } from 'react-redux'
 import { onLogin } from './../1.actions'
 import Loader from 'react-loader-spinner'
+import cookie from 'universal-cookie'
 
+// MENYIMPAN DATA DI BROWSER
+const Cookie = new cookie()
 class Login extends React.Component{
+        
+    // KE TRIGER KALAU ADA PERUBAHAN PROPS YAITU GLOBAL STATE
+    componentWillReceiveProps(newProps){
+        Cookie.set('userData',newProps.username,{path :'/'})
+    }
     onBtnLoginClick = () => {
         var username = this.refs.username.value // fikri
         var password = this.refs.password.value // rahasia123
@@ -23,6 +31,13 @@ class Login extends React.Component{
             return <button type="button" className="btn btn-primary" onClick={this.onBtnLoginClick} style={{width:"300px"}} ><i className="fas fa-sign-in-alt" /> Login</button>
         }
         
+    }
+    renderErrorMessege = () => {
+        if(this.props.error !== ""){
+            return <div class="alert alert-danger mt-3" role="alert">
+                        {this.props.error}
+                    </div>
+        }
     }
 
     render(){
@@ -53,6 +68,7 @@ class Login extends React.Component{
                             <div className="form-group row">
                                 <div className="col-12" style={{textAlign:'center'}}>
                                     {this.renderBtnOrLoading()}
+                                    {this.renderErrorMessege()}
                                 </div>
                                     
                             </div>
@@ -68,7 +84,8 @@ class Login extends React.Component{
 const mapsStateToProps =(state) => {
     return{
         username : state.user.username,
-        loading : state.user.loading
+        loading : state.user.loading,
+        error : state.user.error,
     }
 }
 
