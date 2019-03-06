@@ -16,6 +16,7 @@
     "reactstrap": "^7.1.0",
     "redux": "^4.0.1",
     "redux-thunk": "^2.3.0",
+    "sweetalert": "^2.1.2",
     "universal-cookie": "^3.0.7"
   },
   "scripts": {

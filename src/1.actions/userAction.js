@@ -1,4 +1,5 @@
 import axios from 'axios'
+import {urlApi} from './../support/urlApi'
 
 export const onLogin = (paramUsername,password) => { 
     return(dispatch)=>{
@@ -8,7 +9,7 @@ export const onLogin = (paramUsername,password) => {
         })
 
         // GET DATA DARI FAKE API JSON SERVER
-        axios.get('http://localhost:2000/users',{
+        axios.get(urlApi + '/users',{
             params:{username :paramUsername,
                     password}})
         
@@ -43,7 +44,7 @@ export const onLogin = (paramUsername,password) => {
 
 export const keepLogin = (cookie) => {
     return(dispatch) => {
-        axios.get('http://localhost:2000/users',{params : {username : cookie}})
+        axios.get(urlApi + '/users',{params : {username : cookie}})
         .then((res) => {
             if(res.data.length > 0){
                 dispatch({
@@ -62,3 +63,37 @@ export const resetUser = () => {
         type : 'RESET_USER'
     }
 }
+
+export const userRegister = (a,b,c,d) => { // userRegister('fikri')
+    return(dispatch)=>{
+        dispatch({
+            type : 'LOADING'
+        })
+        var newData = {username : a, password : b, email : c, phone : d}
+        axios.get(urlApi +'/users?username=' + newData.username)
+        .then((res) => {
+            if(res.data.length > 0){
+                dispatch({
+                    type : 'USERNAME_NOT_AVAILABLE'
+                })
+            }
+            else{
+                axios.post(urlApi +'/users',newData)
+                .then((res) => dispatch({
+                    type : 'LOGIN_SUCCESS',
+                    payload : a
+                }))
+                .catch((err) => console.log(err))
+            }
+        })
+        .catch((err) => {
+            dispatch({
+                type : 'SYSTEM_ERROR'
+            })
+        })
+    }
+}
+
+
+
+

@@ -11,7 +11,10 @@ export default (state=INITIAL_STATE,action) => {
         return {...INITIAL_STATE , error : 'System Error'}
     }else if(action.type === 'RESET_USER'){
         return INITIAL_STATE
-    }else{
+    }else if(action.type === 'USERNAME_NOT_AVAILABLE'){
+        return {...INITIAL_STATE, error : 'Username not available'}
+    }
+    else{
         return state
     }
 }

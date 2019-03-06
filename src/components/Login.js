@@ -11,6 +11,7 @@ class Login extends React.Component{
         
     // KE TRIGER KALAU ADA PERUBAHAN PROPS YAITU GLOBAL STATE
     componentWillReceiveProps(newProps){
+        console.log(newProps)
         Cookie.set('userData',newProps.username,{path :'/'})
     }
     onBtnLoginClick = () => {
