@@ -1,11 +1,28 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link,Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { userRegister } from './../1.actions'
 import Loader from 'react-loader-spinner'
 
 class Register extends React.Component{
     state = {error : ''}
+    componentWillReceiveProps(newProps){
+        if(newProps.error !== ""){
+            this.setState({error : newProps.error})
+        }
+    }
+    renderLoadingOrBtn =() => {
+        if(this.props.loading === true){
+            return <Loader
+                    type="Audio"
+                    color="#00BFFF"
+                    height="50"	
+                    width="50"
+                    />
+        }else{
+            return <button type="button"    className="btn btn-primary" style={{width:"300px"}} onClick={this.onBtnRegisterClick} ><i className="fas fa-sign-in-alt"  /> Sign Up!</button>
+        }
+    }
 
     renderErrorMessege = () => {
         if(this.state.error !== ""){
@@ -14,9 +31,7 @@ class Register extends React.Component{
                     </div>
         }
     }
-
     onBtnRegisterClick = () => {
-
         var username = this.refs.username.value
         var password = this.refs.password.value
         var email = this.refs.email.value
@@ -24,13 +39,13 @@ class Register extends React.Component{
         if(username === "" || password ===""||email === "" ||phone ===""){
             this.setState({error : "Harus diisi semua"})
         }else{
-
+            this.props.userRegister(username,password,email,phone)
         }
     }
-    renderLoaderOrBtn = () => {
-
-    }
     render(){
+        if(this.props.user !== ""){
+           return <Redirect to='/' />
+        }
         return(
             <div className="container myBody " style={{minHeight:"600px"}}>
                     <div className="row justify-content-sm-center ml-auto mr-auto mt-3">
@@ -68,7 +83,7 @@ class Register extends React.Component{
                                 
                                 <div className="form-group row">
                                     <div className="col-12">
-                                    <button type="button"    className="btn btn-primary" style={{width:"300px"}} onClick={this.onBtnRegisterClick} ><i className="fas fa-sign-in-alt"  /> Sign Up!</button>
+                                    {this.renderLoadingOrBtn()}
                                     {this.renderErrorMessege()}
                                     </div>
                                         

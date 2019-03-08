@@ -1,6 +1,8 @@
 import axios from 'axios'
 import {urlApi} from './../support/urlApi'
+import cookie from 'universal-cookie'
 
+const objCookie = new cookie()
 export const onLogin = (paramUsername,password) => { 
     return(dispatch)=>{
         // INI UNTUK MENGUBAH LOADING MENJADI TRUE
@@ -70,7 +72,9 @@ export const userRegister = (a,b,c,d) => { // userRegister('fikri')
             type : 'LOADING'
         })
         var newData = {username : a, password : b, email : c, phone : d}
-        axios.get(urlApi +'/users?username=' + newData.username)
+        // Mengecek Username availablity
+
+        axios.get(urlApi +'/users?username=' + a)
         .then((res) => {
             if(res.data.length > 0){
                 dispatch({
@@ -81,8 +85,13 @@ export const userRegister = (a,b,c,d) => { // userRegister('fikri')
                 axios.post(urlApi +'/users',newData)
                 .then((res) => dispatch({
                     type : 'LOGIN_SUCCESS',
+                    //Mengirim Payload dalam bentuk Object
+                    //payload : { username : newData.username, id : res.data.id, email : c} 
                     payload : a
-                }))
+                },
+                    // Parameter Ketiga agar cookie bisa diakses di semua komponen
+                    objCookie.set('userData',a,{path : '/'}),
+                ))
                 .catch((err) => console.log(err))
             }
         })
@@ -93,6 +102,7 @@ export const userRegister = (a,b,c,d) => { // userRegister('fikri')
         })
     }
 }
+userRegister('Fikri','123','fikri@gmail.com','0812381234')
 
 
 
