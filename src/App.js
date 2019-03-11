@@ -4,6 +4,7 @@ import Home from './components/Home'
 import Login from './components/Login'
 import Register from './components/Register'
 import Product from './components/productList'
+import ManageProduct from './components/admin/manageProduct'
 import { Route ,withRouter } from 'react-router-dom' 
 import {connect} from 'react-redux'
 import cookie from 'universal-cookie'
@@ -29,6 +30,7 @@ class App extends Component {
           <Route path='/login' component={Login} exact/>
           <Route path='/register' component={Register} exact/>
           <Route path='/product' component={Product} exact/>
+          <Route path='/manage' component={ManageProduct} exact/>
       </div>
     );
   }

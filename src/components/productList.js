@@ -18,7 +18,7 @@ class ProductList extends React.Component{
         var jsx = this.state.listProduct.map((val) => {
             return (
                 <div className="card col-md-3 mr-5 mt-3" style={{width: '18rem'}}>
-                    <img className="card-img-top img" height='200px' src={val.img} alt="Card image cap" />
+                    <img className="card-img-top img" height='200px' src={val.img} alt="Card" />
                     <div className='discount'>{val.discount}%</div>
                     <div className="card-body">
                     <h4 className="card-text">{val.nama}</h4>
