@@ -10,6 +10,7 @@ import './index.css';
 import './support/bootstrap/css/bootstrap.min.css';
 import './support/fontawesome-free/css/fontawesome.min.css'
 import './support/fontawesome-free/css/all.min.css';
+import 'semantic-ui-css/semantic.min.css'
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 

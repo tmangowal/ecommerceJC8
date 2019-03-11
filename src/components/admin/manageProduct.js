@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
+import TableHead from '@material-ui/core/TableHead'
 import TableCell from '@material-ui/core/TableCell';
 import TableFooter from '@material-ui/core/TableFooter';
 import TablePagination from '@material-ui/core/TablePagination';
@@ -13,6 +14,9 @@ import FirstPageIcon from '@material-ui/icons/FirstPage';
 import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft';
 import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
 import LastPageIcon from '@material-ui/icons/LastPage';
+import Axios from 'axios';
+import { Button , Icon , Input, Label} from 'semantic-ui-react'
+import { urlApi } from '../../support/urlApi';
 
 const actionsStyles = theme => ({
   root: {
@@ -93,12 +97,6 @@ const TablePaginationActionsWrapped = withStyles(actionsStyles, { withTheme: tru
   TablePaginationActions,
 );
 
-let counter = 0;
-function createData(name, calories, fat) {
-  counter += 1;
-  return { id: counter, name, calories, fat };
-}
-
 const styles = theme => ({
   root: {
     width: '100%',
@@ -114,32 +112,73 @@ const styles = theme => ({
 
 class CustomPaginationActionsTable extends React.Component {
   state = {
-    rows: [
-      createData('Cupcake', 305, 3.7),
-      createData('Donut', 452, 25.0),
-      createData('Eclair', 262, 16.0),
-      createData('Frozen yoghurt', 159, 6.0),
-      createData('Gingerbread', 356, 16.0),
-      createData('Honeycomb', 408, 3.2),
-      createData('Ice cream sandwich', 237, 9.0),
-      createData('Jelly Bean', 375, 0.0),
-      createData('KitKat', 518, 26.0),
-      createData('Lollipop', 392, 0.2),
-      createData('Marshmallow', 318, 0),
-      createData('Nougat', 360, 19.0),
-      createData('Oreo', 437, 18.0),
-    ].sort((a, b) => (a.calories < b.calories ? -1 : 1)),
+    rows: [],
     page: 0,
     rowsPerPage: 5,
   };
 
+  componentDidMount(){
+    this.getDataApi()
+  }
+
+  getDataApi =() => {
+      Axios.get(urlApi + '/products')
+      .then((res) => this.setState({rows : res.data}) )
+      .catch((err) => console.log(err))
+  }
+
   handleChangePage = (event, page) => {
     this.setState({ page });
   };
+  onBtnDelete = (id) => {
+      Axios.delete(urlApi +'/products/'+ id)
+      .then((res) => {
+        this.getDataApi()
+      })
+      .catch((err) => console.log(err))
+  }
+
+  renderJsx = () => {
+    var jsx =  this.state.rows.slice(this.state.page * this.state.rowsPerPage,  this.state.page * this.state.rowsPerPage + this.state.rowsPerPage)
+    .map((val) => {
+        return (
+            <TableRow key={val.id}>
+                <TableCell>{val.id}</TableCell>
+                <TableCell component="th" scope="row">
+                {val.nama}
+                </TableCell>
+                <TableCell>Rp. {val.harga}</TableCell>
+                <TableCell>{val.discount}</TableCell>
+                <TableCell>{val.category}</TableCell>
+                <TableCell><img src={val.img} width='50px'/></TableCell>
+                <TableCell>{val.deskripsi}</TableCell>
+                <TableCell>
+                <Button animated color='teal'>
+                <Button.Content visible>Edit</Button.Content>
+                <Button.Content hidden>
+                    <Icon name='edit' />
+                </Button.Content>
+                </Button>
+                <Button animated color='red' onClick={()=> this.onBtnDelete(val.id)}>
+                <Button.Content visible>Delete</Button.Content>
+                <Button.Content hidden>
+                    <Icon name='delete'/>
+                </Button.Content>
+                </Button>
+                </TableCell>
+            </TableRow>
+        )
+    })
+    return jsx
+  }
 
   handleChangeRowsPerPage = event => {
     this.setState({ page: 0, rowsPerPage: event.target.value });
   };
+  onBtnAdd =() => {
+      var nama = this.produk.inputRef.value
+      alert(nama)
+  }
 
   render() {
     const { classes } = this.props;
@@ -147,19 +186,24 @@ class CustomPaginationActionsTable extends React.Component {
     const emptyRows = rowsPerPage - Math.min(rowsPerPage, rows.length - page * rowsPerPage);
 
     return (
+    <div className='container'>
       <Paper className={classes.root}>
         <div className={classes.tableWrapper}>
           <Table className={classes.table}>
+          <TableHead>
+              <TableRow>
+                  <TableCell style={{fontSize:'24px', fontWeight:'600'}}>ID</TableCell>
+                  <TableCell style={{fontSize:'24px', fontWeight:'600'}}>NAMA</TableCell>
+                  <TableCell style={{fontSize:'24px', fontWeight:'600'}}>HARGA</TableCell>
+                  <TableCell style={{fontSize:'24px', fontWeight:'600'}}>DISC</TableCell>
+                  <TableCell style={{fontSize:'24px', fontWeight:'600'}}>CAT</TableCell>
+                  <TableCell style={{fontSize:'24px', fontWeight:'600'}}>IMG</TableCell>
+                  <TableCell style={{fontSize:'24px', fontWeight:'600'}}>DESK</TableCell>
+              </TableRow>
+          </TableHead>
             <TableBody>
-              {rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map(row => (
-                <TableRow key={row.id}>
-                  <TableCell component="th" scope="row">
-                    {row.name}
-                  </TableCell>
-                  <TableCell align="right">{row.calories}</TableCell>
-                  <TableCell align="right">{row.fat}</TableCell>
-                </TableRow>
-              ))}
+               {this.renderJsx()}
+
               {emptyRows > 0 && (
                 <TableRow style={{ height: 48 * emptyRows }}>
                   <TableCell colSpan={6} />
@@ -186,6 +230,38 @@ class CustomPaginationActionsTable extends React.Component {
           </Table>
         </div>
       </Paper>
+      <Paper className='mt-3'>
+          <Table>
+              <TableHead>
+                <TableRow>
+                <TableCell style={{fontSize:'24px', fontWeight:'600'}}>ADD PRODUCT</TableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                  <TableRow>
+                      <TableCell>
+                        <Input ref={input => this.produk = input} placeholder='Nama Product' className='mt-2 ml-2 mb-2'/>
+                        <Input className='mt-2 ml-2 mb-2' labelPosition='right' type='text' placeholder='Harga Product'>
+                            <Label basic>Rp</Label>
+                            <input />
+                            <Label>.00</Label>
+                        </Input>
+                        <Input placeholder='Discount' className='mt-2 ml-2 mb-2'/>
+                        <Input placeholder='Category' className='mt-2 ml-2 mb-2'/>
+                        <Input placeholder='Image' className='mt-2 ml-2 mb-2'/>
+                        <Input placeholder='Deskripsi' className='mt-2 ml-2 mb-2'/>
+                        <Button animated color='teal' className='mt-2 ml-2 mb-2' onClick={this.onBtnAdd}>
+                        <Button.Content visible>Add Product</Button.Content>
+                        <Button.Content hidden>
+                            <Icon name='add'/>
+                        </Button.Content>
+                        </Button>
+                      </TableCell>
+                  </TableRow>
+              </TableBody>
+          </Table>
+      </Paper>
+      </div>
     );
   }
 }
