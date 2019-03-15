@@ -1,8 +1,11 @@
 import React from 'react'
 import { Link,Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { userRegister } from './../1.actions'
+import { userRegister, loginWithGoogle } from './../1.actions'
 import Loader from 'react-loader-spinner'
+import firebase from 'firebase'
+import {provider} from '../support/google'
+
 
 class Register extends React.Component{
     state = {error : ''}
@@ -42,6 +45,14 @@ class Register extends React.Component{
             this.props.userRegister(username,password,email,phone)
         }
     }
+    loginWithGoogle = () =>{
+        firebase.auth().signInWithPopup(provider)
+        .then((res) => {
+            this.props.loginWithGoogle(res.user.email)
+        })
+        .catch((err) => console.log(err))
+    }
+
     render(){
         if(this.props.user !== ""){
            return <Redirect to='/' />
@@ -84,6 +95,7 @@ class Register extends React.Component{
                                 <div className="form-group row">
                                     <div className="col-12">
                                     {this.renderLoadingOrBtn()}
+                                    <div><button className="btn border-primary mt-2" onClick={this.loginWithGoogle} stlye={{width:"300px"}}>Login With Google</button></div>
                                     {this.renderErrorMessege()}
                                     </div>
                                         
@@ -107,4 +119,4 @@ const mapStateToProps = (state) => {
     }
 } 
 
-export default connect(mapStateToProps,{userRegister})(Register)
+export default connect(mapStateToProps,{userRegister , loginWithGoogle})(Register)

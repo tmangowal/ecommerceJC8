@@ -5,12 +5,15 @@ import Login from './components/Login'
 import Register from './components/Register'
 import Product from './components/productList'
 import ManageProduct from './components/admin/manageProduct'
-import { Route ,withRouter } from 'react-router-dom' 
+import PageNotFound from './components/pageNotFound'
+import ProductDetail from './components/productDetail'
+import ScrollToTop from './components/scrollToTop'
+import { Route ,withRouter, Switch } from 'react-router-dom' 
 import {connect} from 'react-redux'
 import cookie from 'universal-cookie'
 import { keepLogin } from './1.actions'
 import './App.css';
-
+// 
 // withRouter => Untuk tersambung ke Reducer dengan connect, 
 // tapi di dalam komponen ada routing
 
@@ -22,18 +25,34 @@ class App extends Component {
       this.props.keepLogin(terserah)
     }
   }
+  componentWillReceiveProps(newProps){
+    console.log(newProps)
+    objCookie.set('userData',newProps.username,{path :'/'})
+  }
   render() {
     return (
       <div>
           <Navbar/>
-          <Route path='/' component={Home} exact/>
-          <Route path='/login' component={Login} exact/>
-          <Route path='/register' component={Register} exact/>
-          <Route path='/product' component={Product} exact/>
-          <Route path='/manage' component={ManageProduct} exact/>
+          <ScrollToTop>
+            <Switch>
+              <Route path='/' component={Home} exact/>
+              <Route path='/login' component={Login} exact/>
+              <Route path='/register' component={Register} exact/>
+              <Route path='/product' component={Product} exact/>
+              <Route path='/manage' component={ManageProduct} exact/>
+              <Route path='/product-detail/:id' component={ProductDetail} exact/>
+              <Route path='*' component={PageNotFound}/>
+            </Switch>
+          </ScrollToTop>
       </div>
     );
   }
 }
 
-export default withRouter(connect(null , {keepLogin})(App));
+const mapStateToProps = (state) => {
+  return {
+    username : state.user.username
+  }
+}
+
+export default withRouter(connect(mapStateToProps , {keepLogin})(App));
