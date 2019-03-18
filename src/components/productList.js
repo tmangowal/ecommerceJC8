@@ -5,7 +5,7 @@ import { urlApi } from './../support/urlApi'
 import './../support/css/product.css'
 
 class ProductList extends React.Component{
-    state = {listProduct : []}
+    state = {listProduct : [], product : {}}
 
     componentDidMount(){
         this.getDataProduct()
@@ -17,27 +17,29 @@ class ProductList extends React.Component{
     }
     renderProdukJsx = () => {
         var jsx = this.state.listProduct.map((val) => {
-            return (
-                <div className="card col-md-3 mr-5 mt-3" style={{width: '18rem'}}>
-                    <Link to={'/product-detail/' + val.id}><img className="card-img-top img" height='200px' src={val.img} alt="Card" /></Link>
-                    {/* Pake if ternary (karena melakukan pengkondisian di dalam return) */}
-                    {
-                        val.discount > 0 ? 
-                        <div className='discount'>{val.discount}%</div>
-                        : null
-                    }
-                    <div className="card-body">
-                    <h4 className="card-text">{val.nama}</h4>
-                    {
-                        val.discount > 0 ?
-                        <p className="card-text" style={{textDecoration:'line-through',color:'red',display:'inline'}}>Rp. {val.harga}</p>
-                        : null
-                    }
-                    <p style={{display:'inline' , marginLeft:'10px',fontWeight:'500'}}>Rp. {val.harga - (val.harga*(val.discount/100))}</p>
-                    <input type='button' className='d-block btn btn-primary' value='Add To Cart' />
+            // if(val.nama.toLowerCase().includes(this.props.search.toLowerCase())){
+                return (
+                    <div className="card col-md-3 mr-5 mt-3" style={{width: '18rem'}}>
+                        <Link to={'/product-detail/' + val.id}><img className="card-img-top img" height='200px' src={val.img} alt="Card" /></Link>
+                        {/* Pake if ternary (karena melakukan pengkondisian di dalam return) */}
+                        {
+                            val.discount > 0 ? 
+                            <div className='discount'>{val.discount}%</div>
+                            : null
+                        }
+                        <div className="card-body">
+                        <h4 className="card-text">{val.nama}</h4>
+                        {
+                            val.discount > 0 ?
+                            <p className="card-text" style={{textDecoration:'line-through',color:'red',display:'inline'}}>Rp. {val.harga}</p>
+                            : null
+                        }
+                        <p style={{display:'inline' , marginLeft:'10px',fontWeight:'500'}}>Rp. {val.harga - (val.harga*(val.discount/100))}</p>
+                        <Link to={'/product-detail/' + val.id}><input type='button' className='d-block btn btn-primary' value='Add To Cart' /></Link>
+                        </div>
                     </div>
-                </div>
-            )
+                )
+            // }
         })
 
         return jsx

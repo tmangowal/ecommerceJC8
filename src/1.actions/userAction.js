@@ -139,5 +139,12 @@ export const loginWithGoogle = (email) => {
     }
 }
 
+export const onSearch = (param) => {
+    return {
+        type : 'SEARCH',
+        payload : param
+    }
+}
+
 
 

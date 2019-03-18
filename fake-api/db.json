@@ -4,30 +4,147 @@
       "id": 1,
       "username": "fikri",
       "password": "rahasia123",
-      "role": "admin"
+      "role": "admin",
+      "cart": []
     },
     {
       "id": 2,
       "username": "Seto",
       "password": "rahasia123",
-      "role": "user"
+      "role": "user",
+      "cart": []
     },
     {
       "username": "jamaludin",
       "password": "123",
       "id": 3,
-      "role": "user"
+      "role": "user",
+      "cart": []
     },
     {
       "username": "tmangowal123@gmail.com",
       "role": "user",
-      "id": 4
+      "id": 4,
+      "cart": []
     },
     {
       "username": "username",
       "password": "password",
       "email": "email@email.com",
-      "id": 5
+      "id": 5,
+      "cart": []
+    }
+  ],
+  "cart": [
+    {
+      "id": 1552828597467,
+      "nama": "The Dark Knight",
+      "harga": 40000,
+      "category": "sablon",
+      "discount": 0,
+      "deskripsi": "Kaos Terbaik",
+      "img": "https://store.primagraphia.co.id/wp-content/uploads/2014/08/konsep-kaos.jpg",
+      "qty": 3,
+      "belongs": "fikri",
+      "deleted": false
+    },
+    {
+      "id": 1552828607216,
+      "nama": "Indonesia Merdeka",
+      "harga": 40000,
+      "category": "sablon",
+      "discount": 40,
+      "deskripsi": "Kaos Terbaik",
+      "img": "https://www.satubaju.com/img/editor/img_iscums/153/3705153_m.jpg",
+      "qty": 2,
+      "belongs": "fikri",
+      "deleted": false
+    }
+  ],
+  "history": [
+    {
+      "idUser": 5,
+      "tanggal": "18-3-2019",
+      "item": [
+        {
+          "id": 1552906595822,
+          "nama": "Kaos Polos Hitam",
+          "harga": 20000,
+          "category": "polos",
+          "discount": 10,
+          "deskripsi": "Kaos Terbaik",
+          "img": "https://www.jakartanotebook.com/images/products/99/63/19075/2/kaos-polos-katun-pria-o-neck-size-m-81402b-or-t-shirt-black-24.jpg",
+          "qty": 2,
+          "belongs": "username",
+          "deleted": false
+        }
+      ],
+      "totalPrice": 36000,
+      "id": 1
+    },
+    {
+      "idUser": 5,
+      "tanggal": "18-3-2019",
+      "item": [
+        {
+          "nama": "Epic Comeback",
+          "harga": 30000,
+          "discount": 20,
+          "category": "sablon",
+          "img": "https://ecs7.tokopedia.net/img/product-1/2018/7/27/27345219/27345219_c9909d3f-8e63-4581-a242-63995611577d_1000_1000.jpg",
+          "deskripsi": "Kaos Terbaik",
+          "id": 1552908194195,
+          "qty": 4,
+          "belongs": "username",
+          "deleted": false
+        }
+      ],
+      "totalPrice": 96000,
+      "id": 2
+    },
+    {
+      "idUser": 5,
+      "tanggal": "18-3-2019",
+      "item": [
+        {
+          "id": 1552910731078,
+          "nama": "Welcome",
+          "harga": 25000,
+          "category": "sablon",
+          "discount": 20,
+          "deskripsi": "Kaos Terbaik",
+          "img": "http://sokwear.com/82-large_default/welcome-to-state-of-kaos.jpg",
+          "qty": 2,
+          "belongs": "username",
+          "deleted": false
+        },
+        {
+          "nama": "Jersey",
+          "harga": 200000,
+          "discount": 20,
+          "category": "Jersey",
+          "img": "https://c.static-nike.com/a/images/t_PDP_1280_v1/f_auto/o16dgjkkzkfrc6ty03yy/kobe-bryant-icon-edition-swingman-nba-jersey-Qj7Cc4.jpg",
+          "deskripsi": "basket",
+          "id": 1552910748456,
+          "qty": 3,
+          "belongs": "username",
+          "deleted": false
+        },
+        {
+          "nama": "Putih",
+          "harga": "50000",
+          "discount": "10",
+          "category": "polos",
+          "img": "https://ecs7.tokopedia.net/img/cache/700/product-1/2016/7/11/10684843/10684843_d0ca5488-ee9d-458c-a36c-903e49c7a070.png",
+          "deskripsi": "oke",
+          "id": 1552910755595,
+          "qty": 1,
+          "belongs": "username",
+          "deleted": false
+        }
+      ],
+      "totalPrice": 565000,
+      "id": 3
     }
   ],
   "products": [

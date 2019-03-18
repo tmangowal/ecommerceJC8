@@ -4,6 +4,13 @@ import { connect } from 'react-redux'
 import Product from './productList'
 
 class Home extends React.Component{
+    state = {search : ''}
+
+    onBtnClick = () => {
+        // alert(this.refs.searchBook.value)
+        this.setState({search : this.refs.searchBook.value})
+    }
+
     render(){
         return(
             <div className="container">
@@ -12,7 +19,7 @@ class Home extends React.Component{
                         <div className="input-group mb-2">
                             <input type="text" ref="searchBook" className="form-control" placeholder="Masukkan kata kunci ... "  />
                             <div className="input-group-append">
-                                <button className="btn btn-info" type="button" id="button-addon2" ><i className="fas fa-search" /></button>
+                                <button onClick={this.onBtnClick} className="btn btn-info" type="button" id="button-addon2" ><i className="fas fa-search" /></button>
                             </div>
                         </div> 
                         <div className="card p-2">
@@ -41,7 +48,7 @@ class Home extends React.Component{
                         USER ID: {this.props.id}
                     </div>
                 </div>
-                <Product/>
+                <Product search={this.state.search}/>
             </div>
         )
     }

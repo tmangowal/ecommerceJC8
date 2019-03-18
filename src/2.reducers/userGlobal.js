@@ -1,4 +1,4 @@
-const INITIAL_STATE = {id : 0, username : "",error : "",loading:false, role : ""}
+const INITIAL_STATE = {id : 0, username : "",error : "",loading:false, role : "", search : ""}
 
 export default (state=INITIAL_STATE,action) => {
     if(action.type === 'LOGIN_SUCCESS'){
@@ -12,7 +12,7 @@ export default (state=INITIAL_STATE,action) => {
     }else if(action.type === 'RESET_USER'){
         return INITIAL_STATE
     }else if(action.type === 'USERNAME_NOT_AVAILABLE'){
-        return {...INITIAL_STATE, error : 'Username not available'}
+        return {... state, error : 'Username not available'}
     }
     else{
         return state

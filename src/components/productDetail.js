@@ -2,9 +2,13 @@ import React from 'react'
 import Axios from 'axios';
 import { urlApi } from '../support/urlApi';
 import {connect} from 'react-redux'
+import swal from 'sweetalert'
+import {qtyCount} from './../1.actions'
+import cookie from 'universal-cookie'
 
+const objCookie = new cookie()
 class ProductDetail extends React.Component{
-    state = {product : {}}
+    state = {product : {}, cart : [], userInfo : {}}
 
     componentDidMount(){
         this.getDataApi()
@@ -18,17 +22,81 @@ class ProductDetail extends React.Component{
         .catch((err) => {
             console.log(err)
         })
+        var getCookie = objCookie.get('userData')
+        Axios.get(urlApi + '/cart?belongs=' + getCookie)
+        .then((res) => {
+            this.setState({cart : res.data, userInfo : getCookie})
+            this.totalQty()
+        } )
+        .catch((err) => console.log(err))
     }
     qtyInputProt = () => {
         var input = this.refs.qty
-        
         if(input.value < 1){
-            input.value = 0
+            input.value = 1
         }
-        if(input.value == 0){
-            input.value = null   
+        if(input.value === 0){
+            input.value = 1   
         }
     }
+    addToCart = () => {
+        var newItem = this.state.product
+        newItem.qty = parseInt(this.refs.qty.value)
+        newItem.belongs = this.props.username
+
+        if(this.refs.qty.value !== ''){
+            // Get Data User
+            Axios.get(urlApi + '/users/' + this.props.userID)
+            .then((res) => {
+                this.setState({userInfo : res.data})
+            })
+            .catch((err) => console.log(err))
+
+            // var newCart = [...this.state.cart, newItem]
+
+            Axios.get(urlApi + '/cart/?belongs=' + this.props.username + '&nama=' + this.state.product.nama)
+            .then((res) => {
+                if(res.data.length > 0){
+                    newItem.qty = res.data[0].qty + newItem.qty
+                    newItem.id = res.data[0].id
+                    
+                    Axios.put(urlApi + '/cart/' + newItem.id, newItem)
+                    .then((res) => {
+                        this.getDataApi()
+                        swal('Add to cart', 'Item Added!', 'success')
+                    })
+                    .catch((err) => console.log(err))
+                }else{
+                    newItem.id = this.idGenerator()
+                    newItem.deleted = false
+                    alert(newItem.qty)
+                    Axios.post(urlApi + '/cart', newItem)
+                    .then((res) => {
+                        this.getDataApi()
+                        swal('Add to cart', 'Item Added!', 'success')
+                    })
+                    .catch((err) => console.log(err))
+                }
+            })
+            .catch((err) => console.log(err))
+        }else{
+            swal('Add to cart', 'Please specify the quantity', 'error')
+        }
+    }
+    
+    totalQty = () => {
+        var totalQty = 0
+        for(var i = 0; i < this.state.cart.length; i++){
+            totalQty += this.state.cart[i].qty
+        }
+        this.props.qtyCount(totalQty)
+    }
+
+    idGenerator = () => {
+        var d = new Date()
+        return d.getTime()
+    }
+
     render(){
         var {nama, harga, discount, deskripsi, img} = this.state.product
         return(
@@ -90,7 +158,7 @@ class ProductDetail extends React.Component{
                         <div className='row mt-4'>
                             <input type="button"  className='btn border-secondary col-md-2' value="Add To Wishlist"/>
                             <input  type="button" className='btn btn-primary col-md-3' value="Beli Sekarang"/>
-                            <input  type="button" className='btn btn-success col-md-3' value="Tambah ke Keranjang"/>
+                            <input  type="button" onClick={this.addToCart} className='btn btn-success col-md-3' value="Tambah ke Keranjang"/>
                         </div>
                         }
                         
@@ -103,8 +171,9 @@ class ProductDetail extends React.Component{
 
 const mapStateToProps = (state) => {
     return{
-        username : state.user.username
+        username : state.user.username,
+        userID : state.user.id
     }
 }
 
-export default connect(mapStateToProps)(ProductDetail)
+export default connect(mapStateToProps, {qtyCount})(ProductDetail)

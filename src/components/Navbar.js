@@ -1,9 +1,9 @@
 import React,  { Component } from 'react';
 import { Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavLink,UncontrolledDropdown,DropdownToggle,DropdownMenu,DropdownItem } from 'reactstrap';
-import { Link } from 'react-router-dom';
+import { Link , Redirect } from 'react-router-dom';
 import { connect } from 'react-redux'
 import terserah from 'universal-cookie'
-import { resetUser } from './../1.actions'
+import { resetUser, onSearch } from './../1.actions'
 
 const objCookie = new terserah()
 class HeaderKu extends Component{
@@ -13,7 +13,8 @@ class HeaderKu extends Component{
     
         this.toggle = this.toggle.bind(this);
         this.state = {
-        isOpen: false
+        isOpen: false,
+        submit : false
       };
     }
     toggle() {
@@ -26,6 +27,15 @@ class HeaderKu extends Component{
         objCookie.remove('userData')
         this.props.resetUser()
     }
+
+    // handleKeyPress = (event) => {
+    //     var input = this.refs.searchBook.value
+    //     if(event.key == 'Enter'){
+    //         this.props.onSearch(input)
+    //         this.setState({submit : true})
+    //         alert(this.props.kata)
+    //     }
+    // }
 
     render(){
             if(this.props.bebas === "")
@@ -67,7 +77,7 @@ class HeaderKu extends Component{
                                 <Nav className="ml-auto" navbar>
                                     <NavItem>
                                     <div className="input-group border-right" style={{width:"350px"}}>
-                                        <input type="text" ref="searchBook" className="form-control" placeholder="Masukkan kata kunci ... " />
+                                        <input  type="text" ref="searchBook" className="form-control" placeholder="Masukkan kata kunci ... " />
                                         <div className="input-group-append mr-2">
                                             <button className="btn border-secondary" type="button" id="button-addon2"><i className="fas fa-search" /></button>
                                         </div>
@@ -78,7 +88,7 @@ class HeaderKu extends Component{
                                         <NavLink>Hi , {this.props.bebas}</NavLink>
                                     </NavItem>
                                     <NavItem>
-                                        <Link to="/login"><NavLink className="btn btn-default border-primary" style={{fontSize:"14px"}}><i class="fas fa-shopping-cart"></i> Cart </NavLink></Link>
+                                        <Link to="/cart"><NavLink className="btn btn-default border-primary" style={{fontSize:"14px"}}><i class="fas fa-shopping-cart"></i>{this.props.qty} Cart </NavLink></Link>
                                     </NavItem>
                                     <UncontrolledDropdown nav inNavbar>
                                         <DropdownToggle nav caret>
@@ -94,7 +104,7 @@ class HeaderKu extends Component{
                                         : null
                                         }
                                         <DropdownItem>
-                                            Histori Transaksi
+                                            <Link to="/history">Histori Transaksi</Link>
                                         </DropdownItem>
                                         <DropdownItem>
                                             Edit Profile
@@ -108,6 +118,9 @@ class HeaderKu extends Component{
                                 </Nav>
                             </Collapse>
                         </Navbar>
+                        {
+                            this.props.submit == true ? <Redirect to='/search' /> : null
+                        }
                     </div>
                 );
             }
@@ -118,10 +131,12 @@ class HeaderKu extends Component{
 const mapStateToProps = (state) => {
     return {
         bebas : state.user.username,
-        role : state.user.role
+        role : state.user.role,
+        kata : state.user.search,
+        qty : state.cart.qty
     }
 }
 
 
 
-export default connect(mapStateToProps,{resetUser})(HeaderKu);
+export default connect(mapStateToProps,{resetUser, onSearch})(HeaderKu);

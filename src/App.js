@@ -8,6 +8,10 @@ import ManageProduct from './components/admin/manageProduct'
 import PageNotFound from './components/pageNotFound'
 import ProductDetail from './components/productDetail'
 import ScrollToTop from './components/scrollToTop'
+import Cart from './components/userCart'
+import ProductList from './components/search'
+import History from './components/history'
+import HistoryDetail from './components/historyDetail'
 import { Route ,withRouter, Switch } from 'react-router-dom' 
 import {connect} from 'react-redux'
 import cookie from 'universal-cookie'
@@ -40,7 +44,11 @@ class App extends Component {
               <Route path='/register' component={Register} exact/>
               <Route path='/product' component={Product} exact/>
               <Route path='/manage' component={ManageProduct} exact/>
+              <Route path='/cart' component={Cart} exact/>
+              <Route path='/search' component={ProductList} exact/>
               <Route path='/product-detail/:id' component={ProductDetail} exact/>
+              <Route path='/history-detail/:id' component={HistoryDetail} exact/>
+              <Route path='/history' component={History} exact/>
               <Route path='*' component={PageNotFound}/>
             </Switch>
           </ScrollToTop>
