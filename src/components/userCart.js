@@ -7,6 +7,7 @@ import {qtyCount} from '../1.actions'
 import cookie from 'universal-cookie'
 import { Button , Icon} from 'semantic-ui-react'
 import swal from 'sweetalert'
+import { Link } from 'react-router-dom';
 
 
 const objCookie = new cookie()
@@ -52,11 +53,11 @@ class Cart extends React.Component{
     }
 
     totalQty = () => {
-        var totalQty = 0
-        for(var i = 0; i < this.state.cart.length; i++){
-            totalQty += this.state.cart[i].qty
-        }
-        this.props.qtyCount(totalQty)
+        // var totalQty = 0
+        // for(var i = 0; i < this.state.cart.length; i++){
+        //     totalQty += this.state.cart[i].qty
+        // }
+        this.props.qtyCount(this.state.cart.length)
     }
 
     renderCart = () => {
@@ -116,30 +117,29 @@ class Cart extends React.Component{
     }
 
     onBtnAddMin = (idx, action) => {
+        var newQty = [...this.state.cart]
         if(action === 'min'){
-            var newQty = [...this.state.cart]
-            console.log(newQty)
-            newQty[idx].qty = newQty[idx].qty - 1
-            this.setState({cart : newQty})
-            Axios.put(urlApi + '/cart/' + newQty[idx].id, newQty[idx])
-            .then((res) => this.totalQty())
-            .catch((err) => console.log(err))
+            if(newQty[idx].qty > 1){
+                newQty[idx].qty = newQty[idx].qty - 1
+                this.setState({cart : newQty})
+                Axios.put(urlApi + '/cart/' + newQty[idx].id, newQty[idx])
+                .then((res) => this.totalQty())
+                .catch((err) => console.log(err))
+            }
         }else if(action === 'add'){
-            var newQty = [...this.state.cart]
-            console.log(newQty)
-            newQty[idx].qty = newQty[idx].qty + 1
-            this.setState({cart : newQty})
-            Axios.put(urlApi + '/cart/' + newQty[idx].id, newQty[idx])
-            .then((res) => this.totalQty())
-            .catch((err) => console.log(err))
+                newQty[idx].qty = newQty[idx].qty + 1
+                this.setState({cart : newQty})
+                Axios.put(urlApi + '/cart/' + newQty[idx].id, newQty[idx])
+                .then((res) => this.totalQty())
+                .catch((err) => console.log(err))
         }
-        
     }
 
     renderTotalPrice = () => {
         var totalPrice = 0
         this.state.cart.map((val) => {
             totalPrice += (val.harga - (val.harga * val.discount / 100)) * val.qty
+            return totalPrice
         })
         return totalPrice
     }
@@ -213,10 +213,13 @@ class Cart extends React.Component{
                                             </Button.Content>
                                         </Button>
                                     </td>
+                                    <td>
+                                        <Link to='/'><input type="button" className="btn btn-primary" value="Continue Shopping"/></Link>
+                                    </td>
                                 </tr>
                                 :
                                 <tr>
-                                    <th scope='col'><div className='alert alert-danger'>Shopping Cart is Empty</div></th>
+                                    <th scope='col'><Link to='/'><input type='button' className='btn btn-block btn-success' value='Your cart is empty. Continue Shopping'/></Link></th>
                                 </tr>
                                 }
                                 {/* <tr>
@@ -226,7 +229,7 @@ class Cart extends React.Component{
                         </table>
                     </div>
                     {
-                    this.state.checkout == true ?
+                    this.state.checkout === true ?
                     <div className="row">
                         <form>
                             <h3>Customer Information</h3>

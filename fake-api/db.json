@@ -110,66 +110,6 @@
       "deleted": false
     },
     {
-      "id": 1552961286341,
-      "nama": "Kaos Polos Hitam",
-      "harga": 20000,
-      "category": "polos",
-      "discount": 10,
-      "deskripsi": "Kaos Terbaik",
-      "img": "https://www.jakartanotebook.com/images/products/99/63/19075/2/kaos-polos-katun-pria-o-neck-size-m-81402b-or-t-shirt-black-24.jpg",
-      "qty": 3,
-      "belongs": "username",
-      "deleted": false
-    },
-    {
-      "id": 1552961292238,
-      "nama": "The Dark Knight",
-      "harga": 40000,
-      "category": "sablon",
-      "discount": 0,
-      "deskripsi": "Kaos Terbaik",
-      "img": "https://store.primagraphia.co.id/wp-content/uploads/2014/08/konsep-kaos.jpg",
-      "qty": 3,
-      "belongs": "username",
-      "deleted": false
-    },
-    {
-      "nama": "Putih",
-      "harga": "50000",
-      "discount": "10",
-      "category": "polos",
-      "img": "https://ecs7.tokopedia.net/img/cache/700/product-1/2016/7/11/10684843/10684843_d0ca5488-ee9d-458c-a36c-903e49c7a070.png",
-      "deskripsi": "oke",
-      "id": 1552962189149,
-      "qty": 1,
-      "belongs": "username",
-      "deleted": false
-    },
-    {
-      "nama": "Epic Comeback",
-      "harga": 30000,
-      "discount": 20,
-      "category": "sablon",
-      "img": "https://ecs7.tokopedia.net/img/product-1/2018/7/27/27345219/27345219_c9909d3f-8e63-4581-a242-63995611577d_1000_1000.jpg",
-      "deskripsi": "Kaos Terbaik",
-      "id": 1552962194507,
-      "qty": 3,
-      "belongs": "username",
-      "deleted": false
-    },
-    {
-      "nama": "Jersey",
-      "harga": 200000,
-      "discount": 20,
-      "category": "Jersey",
-      "img": "https://c.static-nike.com/a/images/t_PDP_1280_v1/f_auto/o16dgjkkzkfrc6ty03yy/kobe-bryant-icon-edition-swingman-nba-jersey-Qj7Cc4.jpg",
-      "deskripsi": "basket",
-      "id": 1552962405999,
-      "qty": 3,
-      "belongs": "username",
-      "deleted": false
-    },
-    {
       "id": 1552970239807,
       "nama": "Kaos Polos Hitam",
       "harga": 20000,
@@ -266,6 +206,358 @@
       ],
       "totalPrice": 565000,
       "id": 3
+    },
+    {
+      "idUser": 5,
+      "tanggal": "19-3-2019",
+      "item": [
+        {
+          "id": 1552977884892,
+          "nama": "The Dark Knight",
+          "harga": 40000,
+          "category": "sablon",
+          "discount": 0,
+          "deskripsi": "Kaos Terbaik",
+          "img": "https://store.primagraphia.co.id/wp-content/uploads/2014/08/konsep-kaos.jpg",
+          "qty": 5,
+          "belongs": "username"
+        },
+        {
+          "nama": "Epic Comeback",
+          "harga": 30000,
+          "discount": 20,
+          "category": "sablon",
+          "img": "https://ecs7.tokopedia.net/img/product-1/2018/7/27/27345219/27345219_c9909d3f-8e63-4581-a242-63995611577d_1000_1000.jpg",
+          "deskripsi": "Kaos Terbaik",
+          "id": 1552978174704,
+          "qty": 9,
+          "belongs": "username"
+        }
+      ],
+      "totalPrice": 416000,
+      "id": 4
+    },
+    {
+      "idUser": 5,
+      "tanggal": "19-3-2019",
+      "item": [
+        {
+          "id": 1552978934632,
+          "nama": "Kaos Polos Hitam",
+          "harga": 20000,
+          "category": "polos",
+          "discount": 10,
+          "deskripsi": "Kaos Terbaik",
+          "img": "https://www.jakartanotebook.com/images/products/99/63/19075/2/kaos-polos-katun-pria-o-neck-size-m-81402b-or-t-shirt-black-24.jpg",
+          "qty": 1,
+          "belongs": "username",
+          "deleted": false
+        },
+        {
+          "id": 1552978936051,
+          "nama": "The Dark Knight",
+          "harga": 40000,
+          "category": "sablon",
+          "discount": 0,
+          "deskripsi": "Kaos Terbaik",
+          "img": "https://store.primagraphia.co.id/wp-content/uploads/2014/08/konsep-kaos.jpg",
+          "qty": 1,
+          "belongs": "username",
+          "deleted": false
+        },
+        {
+          "nama": "Epic Comeback",
+          "harga": 30000,
+          "discount": 20,
+          "category": "sablon",
+          "img": "https://ecs7.tokopedia.net/img/product-1/2018/7/27/27345219/27345219_c9909d3f-8e63-4581-a242-63995611577d_1000_1000.jpg",
+          "deskripsi": "Kaos Terbaik",
+          "id": 1552978937159,
+          "qty": 1,
+          "belongs": "username",
+          "deleted": false
+        },
+        {
+          "id": 1552978938521,
+          "nama": "Kids Jaman Now",
+          "harga": 30000,
+          "category": "sablon",
+          "discount": 40,
+          "deskripsi": "Kaos Terbaik",
+          "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcREPOGo_ydVkhFaDmvBQTO4XrSIePibNXeuWFsXdwSID8VjrGSS7w",
+          "qty": 1,
+          "belongs": "username",
+          "deleted": false
+        },
+        {
+          "id": 1552978939665,
+          "nama": "Welcome",
+          "harga": 25000,
+          "category": "sablon",
+          "discount": 20,
+          "deskripsi": "Kaos Terbaik",
+          "img": "http://sokwear.com/82-large_default/welcome-to-state-of-kaos.jpg",
+          "qty": 1,
+          "belongs": "username",
+          "deleted": false
+        },
+        {
+          "id": 1552978940838,
+          "nama": "Indonesia Merdeka",
+          "harga": 40000,
+          "category": "sablon",
+          "discount": 40,
+          "deskripsi": "Kaos Terbaik",
+          "img": "https://www.satubaju.com/img/editor/img_iscums/153/3705153_m.jpg",
+          "qty": 1,
+          "belongs": "username",
+          "deleted": false
+        },
+        {
+          "nama": "Putih",
+          "harga": "50000",
+          "discount": "10",
+          "category": "polos",
+          "img": "https://ecs7.tokopedia.net/img/cache/700/product-1/2016/7/11/10684843/10684843_d0ca5488-ee9d-458c-a36c-903e49c7a070.png",
+          "deskripsi": "oke",
+          "id": 1552978942765,
+          "qty": 1,
+          "belongs": "username",
+          "deleted": false
+        }
+      ],
+      "totalPrice": 189000,
+      "id": 5
+    },
+    {
+      "idUser": 5,
+      "tanggal": "19-3-2019",
+      "item": [
+        {
+          "id": 1552979391635,
+          "nama": "Kaos Polos Hitam",
+          "harga": 20000,
+          "category": "polos",
+          "discount": 10,
+          "deskripsi": "Kaos Terbaik",
+          "img": "https://www.jakartanotebook.com/images/products/99/63/19075/2/kaos-polos-katun-pria-o-neck-size-m-81402b-or-t-shirt-black-24.jpg",
+          "qty": 1,
+          "belongs": "username",
+          "deleted": false
+        },
+        {
+          "id": 1552979393859,
+          "nama": "The Dark Knight",
+          "harga": 40000,
+          "category": "sablon",
+          "discount": 0,
+          "deskripsi": "Kaos Terbaik",
+          "img": "https://store.primagraphia.co.id/wp-content/uploads/2014/08/konsep-kaos.jpg",
+          "qty": 1,
+          "belongs": "username",
+          "deleted": false
+        }
+      ],
+      "totalPrice": 58000,
+      "id": 6
+    },
+    {
+      "idUser": 7,
+      "tanggal": "19-3-2019",
+      "item": [
+        {
+          "id": 1552980021361,
+          "nama": "The Dark Knight",
+          "harga": 40000,
+          "category": "sablon",
+          "discount": 0,
+          "deskripsi": "Kaos Terbaik",
+          "img": "https://store.primagraphia.co.id/wp-content/uploads/2014/08/konsep-kaos.jpg",
+          "qty": 2,
+          "belongs": "admin2"
+        },
+        {
+          "id": 1552980039466,
+          "nama": "Kaos Polos Hitam",
+          "harga": 20000,
+          "category": "polos",
+          "discount": 10,
+          "deskripsi": "Kaos Terbaik",
+          "img": "https://www.jakartanotebook.com/images/products/99/63/19075/2/kaos-polos-katun-pria-o-neck-size-m-81402b-or-t-shirt-black-24.jpg",
+          "qty": 2,
+          "belongs": "admin2"
+        }
+      ],
+      "totalPrice": 116000,
+      "id": 7
+    },
+    {
+      "idUser": 7,
+      "tanggal": "19-3-2019",
+      "item": [
+        {
+          "id": 1552980273685,
+          "nama": "Kaos Polos Hitam",
+          "harga": 20000,
+          "category": "polos",
+          "discount": 10,
+          "deskripsi": "Kaos Terbaik",
+          "img": "https://www.jakartanotebook.com/images/products/99/63/19075/2/kaos-polos-katun-pria-o-neck-size-m-81402b-or-t-shirt-black-24.jpg",
+          "qty": 2,
+          "belongs": "admin2"
+        },
+        {
+          "id": 1552980275613,
+          "nama": "The Dark Knight",
+          "harga": 40000,
+          "category": "sablon",
+          "discount": 0,
+          "deskripsi": "Kaos Terbaik",
+          "img": "https://store.primagraphia.co.id/wp-content/uploads/2014/08/konsep-kaos.jpg",
+          "qty": 1,
+          "belongs": "admin2",
+          "deleted": false
+        },
+        {
+          "id": 1552980410684,
+          "nama": "Welcome",
+          "harga": 25000,
+          "category": "sablon",
+          "discount": 20,
+          "deskripsi": "Kaos Terbaik",
+          "img": "http://sokwear.com/82-large_default/welcome-to-state-of-kaos.jpg",
+          "qty": 2,
+          "belongs": "admin2"
+        },
+        {
+          "id": 1552980454165,
+          "nama": "Indonesia Merdeka",
+          "harga": 40000,
+          "category": "sablon",
+          "discount": 40,
+          "deskripsi": "Kaos Terbaik",
+          "img": "https://www.satubaju.com/img/editor/img_iscums/153/3705153_m.jpg",
+          "qty": 4,
+          "belongs": "admin2"
+        }
+      ],
+      "totalPrice": 212000,
+      "id": 8
+    },
+    {
+      "idUser": 5,
+      "tanggal": "19-3-2019",
+      "item": [
+        {
+          "id": 1552980580409,
+          "nama": "The Dark Knight",
+          "harga": 40000,
+          "category": "sablon",
+          "discount": 0,
+          "deskripsi": "Kaos Terbaik",
+          "img": "https://store.primagraphia.co.id/wp-content/uploads/2014/08/konsep-kaos.jpg",
+          "qty": 1,
+          "belongs": "username",
+          "deleted": false
+        },
+        {
+          "nama": "Epic Comeback",
+          "harga": 30000,
+          "discount": 20,
+          "category": "sablon",
+          "img": "https://ecs7.tokopedia.net/img/product-1/2018/7/27/27345219/27345219_c9909d3f-8e63-4581-a242-63995611577d_1000_1000.jpg",
+          "deskripsi": "Kaos Terbaik",
+          "id": 1552980582341,
+          "qty": 1,
+          "belongs": "username",
+          "deleted": false
+        },
+        {
+          "id": 1552980618862,
+          "nama": "Kaos Polos Hitam",
+          "harga": 20000,
+          "category": "polos",
+          "discount": 10,
+          "deskripsi": "Kaos Terbaik",
+          "img": "https://www.jakartanotebook.com/images/products/99/63/19075/2/kaos-polos-katun-pria-o-neck-size-m-81402b-or-t-shirt-black-24.jpg",
+          "qty": 1,
+          "belongs": "username",
+          "deleted": false
+        }
+      ],
+      "totalPrice": 82000,
+      "id": 9
+    },
+    {
+      "idUser": 8,
+      "tanggal": "19-3-2019",
+      "item": [
+        {
+          "id": 1552981086567,
+          "nama": "Kids Jaman Now",
+          "harga": 30000,
+          "category": "sablon",
+          "discount": 40,
+          "deskripsi": "Kaos Terbaik",
+          "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcREPOGo_ydVkhFaDmvBQTO4XrSIePibNXeuWFsXdwSID8VjrGSS7w",
+          "qty": 1,
+          "belongs": "admin3",
+          "deleted": false
+        }
+      ],
+      "totalPrice": 18000,
+      "id": 10
+    },
+    {
+      "idUser": 5,
+      "tanggal": "19-3-2019",
+      "item": [
+        {
+          "id": 1552981946730,
+          "nama": "The Dark Knight",
+          "harga": 40000,
+          "category": "sablon",
+          "discount": 0,
+          "deskripsi": "Kaos Terbaik",
+          "img": "https://store.primagraphia.co.id/wp-content/uploads/2014/08/konsep-kaos.jpg",
+          "qty": 1,
+          "belongs": "username",
+          "deleted": false
+        },
+        {
+          "id": 1552981948703,
+          "nama": "Kaos Polos Hitam",
+          "harga": 20000,
+          "category": "polos",
+          "discount": 10,
+          "deskripsi": "Kaos Terbaik",
+          "img": "https://www.jakartanotebook.com/images/products/99/63/19075/2/kaos-polos-katun-pria-o-neck-size-m-81402b-or-t-shirt-black-24.jpg",
+          "qty": 6,
+          "belongs": "username"
+        }
+      ],
+      "totalPrice": 148000,
+      "id": 11
+    },
+    {
+      "idUser": 5,
+      "tanggal": "19-3-2019",
+      "item": [
+        {
+          "id": 1552982012123,
+          "nama": "Kaos Polos Hitam",
+          "harga": 20000,
+          "category": "polos",
+          "discount": 10,
+          "deskripsi": "Kaos Terbaik",
+          "img": "https://www.jakartanotebook.com/images/products/99/63/19075/2/kaos-polos-katun-pria-o-neck-size-m-81402b-or-t-shirt-black-24.jpg",
+          "qty": 10,
+          "belongs": "username",
+          "deleted": false
+        }
+      ],
+      "totalPrice": 180000,
+      "id": 12
     }
   ],
   "products": [

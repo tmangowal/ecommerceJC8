@@ -50,11 +50,11 @@ class App extends Component {
     }
   }
   totalQty = () => {
-    var totalQty = 0
-    for(var i = 0; i < this.state.cart.length; i++){
-        totalQty += this.state.cart[i].qty
-    }
-    this.props.qtyCount(totalQty)
+    // var totalQty = 0
+    // for(var i = 0; i < this.state.cart.length; i++){
+    //     totalQty += this.state.cart[i].qty
+    // }
+    this.props.qtyCount(this.state.cart.length)
   }
   componentWillReceiveProps(newProps){
     console.log(newProps)

@@ -155,7 +155,7 @@ class CustomPaginationActionsTable extends React.Component {
                 <TableCell>Rp. {val.harga}</TableCell>
                 <TableCell>{val.discount}</TableCell>
                 <TableCell>{val.category}</TableCell>
-                <TableCell><img src={val.img} width='50px'/></TableCell>
+                <TableCell><img src={val.img} alt="product" width='50px'/></TableCell>
                 <TableCell>{val.deskripsi}</TableCell>
                 <TableCell>
                 <Button onClick={()=>{this.onBtnEditClick(val)}} animated color='teal'>

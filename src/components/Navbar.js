@@ -119,7 +119,7 @@ class HeaderKu extends Component{
                             </Collapse>
                         </Navbar>
                         {
-                            this.props.submit == true ? <Redirect to='/search' /> : null
+                            this.props.submit === true ? <Redirect to='/search' /> : null
                         }
                     </div>
                 );

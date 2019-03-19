@@ -2,6 +2,7 @@ import React from 'react'
 import Axios from 'axios'
 import {connect} from 'react-redux'
 import { urlApi } from '../support/urlApi';
+import PageNotFound from './pageNotFound';
 
 class HistoryDetail extends React.Component{
     state = {history : {}, items : []}
@@ -31,6 +32,14 @@ class HistoryDetail extends React.Component{
                         {val.nama}
                     </td>
                     <td>
+                        {val.harga}
+                    </td>
+                    <td>
+                        {
+                            val.discount > 0 ? val.discount + "%" : "n/a"
+                        }
+                    </td>
+                    <td>
                         {val.qty}
                     </td>
                     <td>
@@ -43,30 +52,41 @@ class HistoryDetail extends React.Component{
     }
 
     render(){
-        return(
-            <div className='container'>
-                <table className="table col-md-8 col-12">
-                            <thead>
-                                <tr>
-                                    <th scope="col">Transaction History Details ({this.state.history.tanggal})</th>
-                                </tr>
-                                <tr>
-                                    <td>Image</td>
-                                    <td>Item Name</td>
-                                    <td>Quantity</td>
-                                    <td>Price</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {this.renderItems()}
-                            </tbody>
-                            <tfoot>
-                                <th>Total Price = Rp. {this.state.history.totalPrice}</th>
-                            </tfoot>
-                </table>
-            </div>
-        )
+        if(this.props.username !== ''){
+            return(
+                <div className='container'>
+                    <table className="table col-md-8 col-12">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Transaction History Details ({this.state.history.tanggal})</th>
+                                    </tr>
+                                    <tr>
+                                        <td>Image</td>
+                                        <td>Item Name</td>
+                                        <td>Price /pcs</td>
+                                        <td>Discount</td>
+                                        <td>Quantity</td>
+                                        <td>Price</td>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {this.renderItems()}
+                                </tbody>
+                                <tfoot>
+                                    <th>Total Price = Rp. {this.state.history.totalPrice}</th>
+                                </tfoot>
+                    </table>
+                </div>
+            )
+        }
+        return <PageNotFound/>
     }
 }
 
-export default HistoryDetail
+const mapStateToProps =(state) => {
+    return {
+        username : state.user.username
+    }
+}
+
+export default connect(mapStateToProps)(HistoryDetail)

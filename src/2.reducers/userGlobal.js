@@ -12,7 +12,7 @@ export default (state=INITIAL_STATE,action) => {
     }else if(action.type === 'RESET_USER'){
         return {...INITIAL_STATE, cookie : true}
     }else if(action.type === 'USERNAME_NOT_AVAILABLE'){
-        return {... INITIAL_STATE, error : 'Username not available', cookie : true}
+        return {...INITIAL_STATE, error : 'Username not available', cookie : true}
     }else if(action.type === 'COOKIE_CHECKED'){
         return {...INITIAL_STATE, cookie : true}
     }

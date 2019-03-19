@@ -85,11 +85,11 @@ class ProductDetail extends React.Component{
     }
     
     totalQty = () => {
-        var totalQty = 0
-        for(var i = 0; i < this.state.cart.length; i++){
-            totalQty += this.state.cart[i].qty
-        }
-        this.props.qtyCount(totalQty)
+        // var totalQty = 0
+        // for(var i = 0; i < this.state.cart.length; i++){
+        //     totalQty += this.state.cart[i].qty
+        // }
+        this.props.qtyCount(this.state.cart.length)
     }
 
     idGenerator = () => {
@@ -104,7 +104,7 @@ class ProductDetail extends React.Component{
                 <div className="row">
                     <div className='col-md-4'>
                         <div className="card" style={{width: '100%'}}>
-                            <img className="card-img-top" src={img} alt="Card image cap" />
+                            <img className="card-img-top" src={img} alt="Card cap" />
                             <div className="card-body">
                             </div>
                         </div>
@@ -148,7 +148,7 @@ class ProductDetail extends React.Component{
                             </div>
                         </div>
                         
-                        {this.props.username == '' ?
+                        {this.props.username === '' ?
                         <div className='row mt-4'>
                             <input disabled type="button"   className='btn border-secondary col-md-2' value="Add To Wishlist"/>
                             <input disabled type="button"  className='btn btn-primary col-md-3' value="Beli Sekarang"/>

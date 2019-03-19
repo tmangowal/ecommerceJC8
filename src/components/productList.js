@@ -2,10 +2,14 @@ import React from 'react'
 import axios from 'axios'
 import {Link} from 'react-router-dom'
 import { urlApi } from './../support/urlApi'
+import {qtyCount} from './../1.actions'
+import {connect} from 'react-redux'
+import Axios from 'axios'
+import swal from 'sweetalert'
 import './../support/css/product.css'
 
 class ProductList extends React.Component{
-    state = {listProduct : [], product : {}}
+    state = {listProduct : [], product : {}, userInfo : {}, cart : []}
 
     componentDidMount(){
         this.getDataProduct()
@@ -35,7 +39,7 @@ class ProductList extends React.Component{
                             : null
                         }
                         <p style={{display:'inline' , marginLeft:'10px',fontWeight:'500'}}>Rp. {val.harga - (val.harga*(val.discount/100))}</p>
-                        <Link to={'/product-detail/' + val.id}><input type='button' className='d-block btn btn-primary' value='Add To Cart' /></Link>
+                        <input onClick={()=>{this.addToCart(val)}} type='button' className='d-block btn btn-primary' value='Add To Cart' />
                         </div>
                     </div>
                 )
@@ -44,6 +48,74 @@ class ProductList extends React.Component{
 
         return jsx
     }
+    addToCart = (val) => {
+        if(this.props.username !== ''){
+            var newItem = val
+            newItem.qty = 1
+            newItem.belongs = this.props.username
+    
+                // var newCart = [...this.state.cart, newItem]
+                // Get Data User supaya re-render hehe
+                Axios.get(urlApi + '/users/' + this.props.userID)
+                .then((res) => {
+                    this.setState({userInfo : res.data})
+                })
+                .catch((err) => console.log(err))
+    
+                Axios.get(urlApi + '/cart/?belongs=' + this.props.username + '&nama=' + val.nama)
+                .then((res) => {
+                    if(res.data.length > 0){
+                        newItem.qty = res.data[0].qty + newItem.qty
+                        newItem.id = res.data[0].id
+                        
+                        Axios.put(urlApi + '/cart/' + newItem.id, newItem)
+                        .then((res) => {
+                            this.getDataApi()
+                            swal('Add to cart', 'Item Added!', 'success')
+                        })
+                        .catch((err) => console.log(err))
+                    }else{
+                        newItem.id = this.idGenerator()
+                        newItem.deleted = false
+                        Axios.post(urlApi + '/cart', newItem)
+                        .then((res) => {
+                            this.getDataApi()
+                            swal('Add to cart', 'Item Added!', 'success')
+                        })
+                        .catch((err) => console.log(err))
+                    }
+                })
+                .catch((err) => console.log(err))
+
+    
+        }else {
+            swal('Add to cart', 'Please Login First', 'error')
+        }
+    }
+
+    getDataApi = () => {
+        Axios.get(urlApi + '/cart?belongs=' + this.props.username)
+        .then((res) => {
+            this.setState({cart : res.data})
+            this.totalQty()
+            this.getDataProduct()
+        } )
+        .catch((err) => console.log(err))
+    }
+
+    totalQty = () => {
+        // var totalQty = 0
+        // for(var i = 0; i < this.state.cart.length; i++){
+        //     totalQty += this.state.cart[i].qty
+        // }
+        this.props.qtyCount(this.state.cart.length)
+    }
+
+    idGenerator = () => {
+        var d = new Date()
+        return d.getTime()
+    }
+    
     render(){
         return(
             <div className='container'>
@@ -55,4 +127,11 @@ class ProductList extends React.Component{
     }
 }
 
-export default ProductList
+const mapStateToProps =(state) => {
+    return {
+        username : state.user.username,
+        userID : state.user.id
+    }
+}
+
+export default connect(mapStateToProps, {qtyCount})(ProductList)

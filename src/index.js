@@ -7,6 +7,7 @@ import ReduxThunk from 'redux-thunk'
 import Reducers from './2.reducers'
 
 import './index.css';
+import './support/css/404style.css'
 import './support/bootstrap/css/bootstrap.min.css';
 import './support/fontawesome-free/css/fontawesome.min.css'
 import './support/fontawesome-free/css/all.min.css';
