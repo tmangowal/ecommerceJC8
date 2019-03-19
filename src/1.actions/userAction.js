@@ -91,7 +91,7 @@ export const userRegister = (a,b,c,d) => { // userRegister('fikri')
                     type : 'LOGIN_SUCCESS',
                     //Mengirim Payload dalam bentuk Object
                     //payload : { username : newData.username, id : res.data.id, email : c} 
-                    payload : a
+                    payload : newData
                 },
                     // Parameter Ketiga agar cookie bisa diakses di semua komponen
                     objCookie.set('userData',a,{path : '/'}),
@@ -147,4 +147,8 @@ export const onSearch = (param) => {
 }
 
 
-
+export const cookieCheck = () => {
+    return {
+        type : 'COOKIE_CHECKED'
+    }
+}

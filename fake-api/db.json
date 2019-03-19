@@ -33,6 +33,55 @@
       "email": "email@email.com",
       "id": 5,
       "cart": []
+    },
+    {
+      "username": "admin",
+      "password": "password",
+      "email": "admin@email.com",
+      "phone": "08021",
+      "id": 6
+    },
+    {
+      "username": "admin2",
+      "password": "password",
+      "email": "okeoke",
+      "phone": "081",
+      "id": 7
+    },
+    {
+      "username": "admin3",
+      "password": "password",
+      "email": "okok",
+      "phone": "0931",
+      "id": 8
+    },
+    {
+      "username": "admin4",
+      "password": "password",
+      "email": "4124",
+      "phone": "413424",
+      "id": 9
+    },
+    {
+      "username": "admin5",
+      "password": "password",
+      "email": "12341",
+      "phone": "2343252",
+      "id": 10
+    },
+    {
+      "username": "admin6",
+      "password": "password",
+      "email": "1341",
+      "phone": "1352342",
+      "id": 11
+    },
+    {
+      "username": "admin7",
+      "password": "password",
+      "email": "13123",
+      "phone": "312441",
+      "id": 12
     }
   ],
   "cart": [
@@ -58,6 +107,78 @@
       "img": "https://www.satubaju.com/img/editor/img_iscums/153/3705153_m.jpg",
       "qty": 2,
       "belongs": "fikri",
+      "deleted": false
+    },
+    {
+      "id": 1552961286341,
+      "nama": "Kaos Polos Hitam",
+      "harga": 20000,
+      "category": "polos",
+      "discount": 10,
+      "deskripsi": "Kaos Terbaik",
+      "img": "https://www.jakartanotebook.com/images/products/99/63/19075/2/kaos-polos-katun-pria-o-neck-size-m-81402b-or-t-shirt-black-24.jpg",
+      "qty": 3,
+      "belongs": "username",
+      "deleted": false
+    },
+    {
+      "id": 1552961292238,
+      "nama": "The Dark Knight",
+      "harga": 40000,
+      "category": "sablon",
+      "discount": 0,
+      "deskripsi": "Kaos Terbaik",
+      "img": "https://store.primagraphia.co.id/wp-content/uploads/2014/08/konsep-kaos.jpg",
+      "qty": 3,
+      "belongs": "username",
+      "deleted": false
+    },
+    {
+      "nama": "Putih",
+      "harga": "50000",
+      "discount": "10",
+      "category": "polos",
+      "img": "https://ecs7.tokopedia.net/img/cache/700/product-1/2016/7/11/10684843/10684843_d0ca5488-ee9d-458c-a36c-903e49c7a070.png",
+      "deskripsi": "oke",
+      "id": 1552962189149,
+      "qty": 1,
+      "belongs": "username",
+      "deleted": false
+    },
+    {
+      "nama": "Epic Comeback",
+      "harga": 30000,
+      "discount": 20,
+      "category": "sablon",
+      "img": "https://ecs7.tokopedia.net/img/product-1/2018/7/27/27345219/27345219_c9909d3f-8e63-4581-a242-63995611577d_1000_1000.jpg",
+      "deskripsi": "Kaos Terbaik",
+      "id": 1552962194507,
+      "qty": 3,
+      "belongs": "username",
+      "deleted": false
+    },
+    {
+      "nama": "Jersey",
+      "harga": 200000,
+      "discount": 20,
+      "category": "Jersey",
+      "img": "https://c.static-nike.com/a/images/t_PDP_1280_v1/f_auto/o16dgjkkzkfrc6ty03yy/kobe-bryant-icon-edition-swingman-nba-jersey-Qj7Cc4.jpg",
+      "deskripsi": "basket",
+      "id": 1552962405999,
+      "qty": 3,
+      "belongs": "username",
+      "deleted": false
+    },
+    {
+      "id": 1552970239807,
+      "nama": "Kaos Polos Hitam",
+      "harga": 20000,
+      "category": "polos",
+      "discount": 10,
+      "deskripsi": "Kaos Terbaik",
+      "img": "https://www.jakartanotebook.com/images/products/99/63/19075/2/kaos-polos-katun-pria-o-neck-size-m-81402b-or-t-shirt-black-24.jpg",
+      "qty": 3,
+      "belongs": "admin7",
       "deleted": false
     }
   ],

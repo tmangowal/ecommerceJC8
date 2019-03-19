@@ -253,7 +253,7 @@ class Cart extends React.Component{
                             <br/>
                             <div>
                                 <input type='button' onClick={this.onBtnPay} className='btn btn-block btn-success' value='Pay' />
-                                <input type='number' ref='pay' className='form-control col mt-2'/>
+                                <input type='number' placeholder='Input Payment' ref='pay' className='form-control col mt-2'/>
                             </div>
                         </form>
                     </div> : null
